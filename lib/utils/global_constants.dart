@@ -9,4 +9,8 @@ class GlobalConstants{
   ///Car lights (headlights and turn signals)
   static const frontHeadlights = 'assets/car_lights/front_headlights.png';
   static const frontTurnSignal = 'assets/car_lights/front_turn_signal.png';
+
+  ///Hero tags
+  static const carOverviewHero = 'carOverviewHero';
+  static const lockButtonHero = 'lockButtonHero';
 }

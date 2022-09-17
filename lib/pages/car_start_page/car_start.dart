@@ -1,15 +1,23 @@
-import 'package:car_app/car/car_side_widget.dart';
+
 import 'package:car_app/models/car_model.dart';
+import 'package:car_app/pages/car_overview_page/car_overview.dart';
 import 'package:car_app/pages/car_start_page/widgets/animated_title.dart';
 import 'package:car_app/pages/car_start_page/widgets/lock_button.dart';
+import 'package:car_app/utils/app_colors.dart';
 import 'package:car_app/utils/global_constants.dart';
+import 'package:car_app/utils/shimmer_text.dart';
+import 'package:car_app/utils/vertical_page_route.dart';
+import 'package:car_app/widgets/car_widgets/car_side_widget.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter/services.dart';
 
 class CarStart extends StatefulWidget {
   const CarStart({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+    this.onLockButtonTap,
+  });
+
+  final Function()? onLockButtonTap;
 
   @override
   State<CarStart> createState() => _CarStartState();
@@ -38,7 +46,7 @@ class _CarStartState extends State<CarStart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.backgroundColor,
       body: TweenAnimationBuilder(
         duration: const Duration(milliseconds: 300),
         tween: Tween<double>(begin: 0.4, end: backgroundGradientStop),
@@ -77,19 +85,44 @@ class _CarStartState extends State<CarStart> {
                       child: TweenAnimationBuilder(
                         tween: Tween<double>(begin: 1, end: carDarkMaskOpacity),
                         duration: const Duration(milliseconds: 300),
-                        builder: (context, double opacity, child) =>
-                            CarSideWidget(
-                          carModel: carModel,
-                          opacity: opacity,
+                        builder: (context, double opacity, child) => Hero(
+                          tag: GlobalConstants.carOverviewHero,
+                          child: CarSideWidget(
+                            carModel: carModel,
+                            opacity: opacity,
+                          ),
                         ),
                       ),
                     )),
-                SizedBox(
-                    width: 164,
-                    child: LockButton(
-                      isEngineOn: isEngineOn,
-                      onLongPress: () => welcomeBlink(carModel: carModel),
-                    ))
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                        width: 164,
+                        child: LockButton(
+                            isEngineOn: isEngineOn,
+                            onLongPress: () => welcomeBlink(carModel: carModel),
+                            onTap: () => isEngineOn?Navigator.of(context).push(
+                                PageRouteTransitions().verticalTransitionRoute(
+                                    page: CarOverview())):null)),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    SizedBox(
+                      height: 32,
+                      child: AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 300),
+                        child: isEngineOn
+                            ? const ShimmerText(
+                                text: 'Tap on lock button',
+                                textAlign: TextAlign.center,
+                                fontSize: 24,
+                              )
+                            : null,
+                      ),
+                    )
+                  ],
+                ),
               ],
             ),
           ),

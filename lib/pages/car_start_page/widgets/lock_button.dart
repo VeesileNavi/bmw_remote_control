@@ -1,4 +1,5 @@
 import 'package:car_app/utils/app_style_text.dart';
+import 'package:car_app/utils/global_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
@@ -6,10 +7,11 @@ class LockButton extends StatelessWidget {
   LockButton({
     Key? key,
     this.isEngineOn = false,
-    this.onLongPress,
+    this.onLongPress, this.onTap,
   }) : super(key: key);
   final bool isEngineOn;
   final Function()? onLongPress;
+  final Function()? onTap;
 
   final slideTransitionTween = Tween<Offset>(
       begin: const Offset(5, 0),
@@ -17,7 +19,7 @@ class LockButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Neumorphic(
-    duration: Duration(milliseconds: 300),
+    duration: const Duration(milliseconds: 300),
         style: NeumorphicStyle(
             depth: isEngineOn ? -3 : 3,
             lightSource: LightSource.bottomLeft,
@@ -61,10 +63,11 @@ class LockButton extends StatelessWidget {
               ),
               GestureDetector(
                 onLongPress: onLongPress,
+                onTap: onTap,
                 child: Neumorphic(
-                  duration: Duration(milliseconds: 200),
+                  duration: const Duration(milliseconds: 100),
                   style: NeumorphicStyle(
-                      depth: !isEngineOn ? -3 : -3,
+                      depth: !isEngineOn ? -3 : 0,
                       lightSource: LightSource.bottomLeft,
                       color: Colors.transparent,
                       shadowDarkColorEmboss: Colors.black,

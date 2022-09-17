@@ -43,6 +43,7 @@ dependencies:
   vibration: ^1.7.6
   animated_text_kit: ^4.2.2
   shimmer: ^2.0.0
+  simple_animations: ^5.0.0+2
 
 dev_dependencies:
   flutter_test:
