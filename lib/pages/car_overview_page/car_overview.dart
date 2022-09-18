@@ -1,11 +1,13 @@
 import 'package:car_app/models/car_model.dart';
 import 'package:car_app/pages/car_overview_page/widgets/menu_item.dart';
+import 'package:car_app/pages/main_navigation_page/main_navigation_page.dart';
+
 import 'package:car_app/utils/app_colors.dart';
 import 'package:car_app/utils/app_style_text.dart';
 import 'package:car_app/utils/global_constants.dart';
-
 import 'package:car_app/widgets/car_widgets/car_side_widget.dart';
-import 'package:car_app/widgets/neumorphic_widgets/circle_neumorphic_widget.dart';
+
+
 import 'package:car_app/widgets/neumorphic_widgets/rounded_neuporphic_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,9 +45,8 @@ class _CarOverviewState extends State<CarOverview> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       extendBodyBehindAppBar: true,
-      extendBody: false,
+      extendBody: true,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(140),
         child: SizedBox(
@@ -102,7 +103,7 @@ class _CarOverviewState extends State<CarOverview> {
           ),
         ),
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Padding(
             padding: const EdgeInsets.only(left: 24, right: 24, top: 148),
             child: Column(
@@ -114,7 +115,7 @@ class _CarOverviewState extends State<CarOverview> {
                     opacity: 0.5,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 32,
                 ),
                 RoundedNeumorphicWidget(
@@ -136,7 +137,7 @@ class _CarOverviewState extends State<CarOverview> {
                     ],
                   ),
                 ),
-                SizedBox(
+               const SizedBox(
                   height: 48,
                 ),
                 RoundedNeumorphicWidget(
@@ -145,7 +146,8 @@ class _CarOverviewState extends State<CarOverview> {
                       children: [
                         CarOverviewMenuItem(
                           iconData: CupertinoIcons.archivebox,
-                          title: 'awffaawf',
+                          title: 'mainpage',
+                          onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MainNavigationPage())),
                         ),
                         CarOverviewMenuItem(
                           iconData: CupertinoIcons.archivebox,

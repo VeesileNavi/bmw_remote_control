@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class PageRouteTransitions {
   Route verticalTransitionRoute({required Widget page}){
     return PageRouteBuilder(
-      transitionDuration: const Duration(milliseconds: 600),
+      transitionDuration: const Duration(milliseconds: 400),
       pageBuilder: (context, animation, secondaryAnimation) => page,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = 0.0;
