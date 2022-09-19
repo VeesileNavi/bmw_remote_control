@@ -1,8 +1,8 @@
 
 import 'package:car_app/models/car_model.dart';
-import 'package:car_app/pages/car_overview_page/car_overview.dart';
 import 'package:car_app/pages/car_start_page/widgets/animated_title.dart';
 import 'package:car_app/pages/car_start_page/widgets/lock_button.dart';
+import 'package:car_app/pages/main_navigation_page/main_navigation_page.dart';
 import 'package:car_app/utils/app_colors.dart';
 import 'package:car_app/utils/global_constants.dart';
 import 'package:car_app/utils/shimmer_text.dart';
@@ -104,7 +104,7 @@ class _CarStartState extends State<CarStart> {
                             onLongPress: () => welcomeBlink(carModel: carModel),
                             onTap: () => isEngineOn?Navigator.of(context).push(
                                 PageRouteTransitions().verticalTransitionRoute(
-                                    page: CarOverview())):null)),
+                                    page: MainNavigationPage())):null)),
                     const SizedBox(
                       height: 24,
                     ),

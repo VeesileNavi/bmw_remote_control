@@ -14,7 +14,7 @@ class BmwBottomNavigationBar extends StatefulWidget {
       required this.items,
       this.initialIndex = 0});
 
-  final Function(int index) onTap;
+  final void Function(int index) onTap;
   final List<NavigationItemModel> items;
   final int initialIndex;
 
@@ -47,19 +47,34 @@ class _BmwBottomNavigationBarState extends State<BmwBottomNavigationBar> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: widget.items
-                          .map((e) => BmwNavigationItem(
-                                item: e,
-                                onTap: () {
-                                  setState(() {
-                                    selectedIndex = e.id;
-                                    widget.onTap(e.id);
-                                  });
-                                },
-                                selectedIndex: selectedIndex,
-                              ))
-                          .toList()),
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: widget.items.getRange(0, widget.items.length~/2)
+                              .map((e) => BmwNavigationItem(
+                                    item: e,
+                                    onTap: () {
+                                      setState((){selectedIndex = e.id;});
+                                        widget.onTap(e.id);
+                                    },
+                                    selectedIndex: selectedIndex,
+                                  ))
+                              .toList()),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: widget.items.getRange(widget.items.length~/2, widget.items.length)
+                              .map((e) => BmwNavigationItem(
+                            item: e,
+                            onTap: () {
+                              setState((){selectedIndex = e.id;});
+                              widget.onTap(e.id);
+                            },
+                            selectedIndex: selectedIndex,
+                          ))
+                              .toList()),
+                    ],
+                  ),
                 ),
               ),
             ),

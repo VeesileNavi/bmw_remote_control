@@ -1,3 +1,4 @@
+
 import 'package:car_app/models/car_model.dart';
 import 'package:car_app/pages/car_overview_page/widgets/menu_item.dart';
 import 'package:car_app/pages/main_navigation_page/main_navigation_page.dart';
@@ -6,7 +7,6 @@ import 'package:car_app/utils/app_colors.dart';
 import 'package:car_app/utils/app_style_text.dart';
 import 'package:car_app/utils/global_constants.dart';
 import 'package:car_app/widgets/car_widgets/car_side_widget.dart';
-
 
 import 'package:car_app/widgets/neumorphic_widgets/rounded_neuporphic_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -36,12 +36,12 @@ class _CarOverviewState extends State<CarOverview> {
     super.initState();
     containerDepth = 0;
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) => Future.delayed(
-       const Duration(milliseconds: 300),
+        const Duration(milliseconds: 300),
         () => setState(() {
               containerDepth = 6;
             })));
   }
-
+  var initialIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -137,7 +137,7 @@ class _CarOverviewState extends State<CarOverview> {
                     ],
                   ),
                 ),
-               const SizedBox(
+                const SizedBox(
                   height: 48,
                 ),
                 RoundedNeumorphicWidget(
@@ -147,7 +147,9 @@ class _CarOverviewState extends State<CarOverview> {
                         CarOverviewMenuItem(
                           iconData: CupertinoIcons.archivebox,
                           title: 'mainpage',
-                          onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MainNavigationPage())),
+                          onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => MainNavigationPage())),
                         ),
                         CarOverviewMenuItem(
                           iconData: CupertinoIcons.archivebox,

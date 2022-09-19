@@ -18,13 +18,26 @@ class BmwNavigationItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final selected = selectedIndex == item.id;
     return GestureDetector(
-      onTap: onTap(),
-      child: GradientMask(
-        gradient:
-            selected ? AppGradient.blueGradient : AppGradient.disabledGradient,
-        child: Icon(
-          item.iconData,
-          size: 44,
+      onTap: onTap,
+      child: Container(
+        height: double.maxFinite,
+        width: 64,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          boxShadow: selected?[
+            BoxShadow(
+              color: Colors.blue.withOpacity(0.7),
+              blurRadius: 36.0,
+              spreadRadius: 0,
+            ),
+          ]:null),
+        child: GradientMask(
+          gradient:
+              selected ? AppGradient.blueGradient : AppGradient.disabledGradient,
+          child: Icon(
+            item.iconData,
+            size: 36,
+          ),
         ),
       ),
     );
