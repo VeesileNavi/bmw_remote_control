@@ -14,13 +14,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class CarOverview extends StatefulWidget {
-  CarOverview({super.key});
+  const CarOverview({super.key});
 
   @override
   State<CarOverview> createState() => _CarOverviewState();
 }
 
-class _CarOverviewState extends State<CarOverview> {
+class _CarOverviewState extends State<CarOverview> with AutomaticKeepAliveClientMixin{
   final carModel = CarModel(
     carMainAsset: GlobalConstants.carFrontMainAsset,
     carHeadlightAsset: GlobalConstants.frontHeadlights,
@@ -202,4 +202,7 @@ class _CarOverviewState extends State<CarOverview> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

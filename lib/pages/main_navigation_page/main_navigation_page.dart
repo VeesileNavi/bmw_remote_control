@@ -25,7 +25,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
     return Scaffold(
       extendBody: true,
       body: PageView(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         controller: _pageController,
         children: [
           CarOverview(),

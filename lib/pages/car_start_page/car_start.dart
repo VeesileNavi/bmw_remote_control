@@ -11,7 +11,7 @@ import 'package:car_app/widgets/car_widgets/car_side_widget.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter/services.dart';
 
-class CarStart extends StatefulWidget {
+class CarStart extends StatefulWidget{
   const CarStart({
     super.key,
     this.onLockButtonTap,
@@ -23,7 +23,7 @@ class CarStart extends StatefulWidget {
   State<CarStart> createState() => _CarStartState();
 }
 
-class _CarStartState extends State<CarStart> {
+class _CarStartState extends State<CarStart> with AutomaticKeepAliveClientMixin{
   late CarModel carModel;
   late bool isEngineOn;
   late double backgroundGradientStop;
@@ -104,7 +104,7 @@ class _CarStartState extends State<CarStart> {
                             onLongPress: () => welcomeBlink(carModel: carModel),
                             onTap: () => isEngineOn?Navigator.of(context).push(
                                 PageRouteTransitions().verticalTransitionRoute(
-                                    page: MainNavigationPage())):null)),
+                                    page: const MainNavigationPage())):null)),
                     const SizedBox(
                       height: 24,
                     ),
@@ -157,4 +157,7 @@ class _CarStartState extends State<CarStart> {
           : backgroundGradientStop = 0.1;
     });
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

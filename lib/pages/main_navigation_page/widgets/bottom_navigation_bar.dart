@@ -4,7 +4,7 @@ import 'package:car_app/models/navigation_item_model.dart';
 import 'package:car_app/pages/main_navigation_page/widgets/bottom_navigation_bar_painter.dart';
 import 'package:car_app/utils/app_gradient.dart';
 import 'package:car_app/utils/gradient_mask.dart';
-import 'package:car_app/widgets/bmw_navigation_item.dart';
+import 'package:car_app/widgets/navigation_item.dart';
 import 'package:flutter/material.dart';
 
 class BmwBottomNavigationBar extends StatefulWidget {
